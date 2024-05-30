@@ -1,7 +1,7 @@
 # Danish Car Price Predictor
 Try it out live at: https://danish-car-price-predictor-dot-sylvan-mode-413619.nw.r.appspot.com/  
 
-![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/30bbecf1-6364-4937-ad12-36150d657e46)
+![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/da13c16e-6393-448d-81ae-e987c3bcc500)  
 
 
 ## Overview
@@ -78,7 +78,7 @@ cars_df = cars_df.drop(['gear_type_Manuel'], axis=1)
 ```
 Before the model creation, a quick check for multicollinearity was done using a VIF matrix.  
 As can be seen in the screenshot below, a high correlation was discovered on the variables "top_speed" and "gears".  
-![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/f5967ff2-e7a5-4738-911e-9adcd4618720)  
+![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/82340e0c-02cf-48b9-b8dd-2731b3f6e0ca)  
 A good data science practice would be to remove one or both of those variables. However, the main focus of this project was the most accurate predictions, which is why both scenarios was tested. Including both variables proved to provide the highest prediction accuracy, which is why they were included anyway. Also, I had decided to only use tree-based models beforehand, because of their robustness to outliers and high predictive powers. In general, tree-based models do not rely on the assumption of no multicollinearity among variables. 
 
 I proceeded to split the data into training and test data using a 80/20 split, and benchmarked five different tree-based models, using the following function.
@@ -109,7 +109,7 @@ def train_test_models(X_train, X_test, y_train, y_test, model):
     return bench_eval_dict
 ```
 The resulting evaluations looked like this:  
-![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/730df47e-ee84-405b-86dc-5749a47d121a)  
+![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/cb76b4e5-b516-4a54-92aa-021c6ad8138d)  
 As can be seen in the screenshot, the XGBRegressor-model performed best on all parameters when it came to benchmarking.
 However, to have a more robust foundation for choosing the XGBRegressor-model instead of the other four models, I needed to ensure that it still performed better across different subsets of the data, and not just the 80/20 split that was done. This is especially important, considering the relatively small size of the dataset, which could easily lead to overfitting.  
 I therefore proceeded to do a K-fold cross-validation, using the function below.
@@ -159,7 +159,7 @@ grid_search = GridSearchCV(estimator=best_eval_model, param_grid=param_grid, cv=
 grid_search.fit(X_train, y_train)
 ```
 As shown in the screenshot below, it was possible to slightly improve the model's performance, by tuning its hyperparameters.  
-![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/1f7346d1-9960-471d-ba05-835207f29015)
+![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/0ad9a6e2-5953-4127-a165-ab1fe968990a)  
   
 Lastly, this model was saved as a .joblib file, intended to be used for the application.
 ```python
