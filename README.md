@@ -138,7 +138,7 @@ def evaluate_model_cross_val(model, X, y, folds=5):
     return cross_eval_dict
 ```
 The resulting evaluations from the cross validation looked like this:  
-![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/39b9b625-a648-4bc9-9b5a-bfdae66747f7)  
+![image](https://github.com/allanreda/Danish-Car-Price-Predictor/assets/89948110/a0ccd99c-8680-4b35-aa61-ab60ddb9c7ae)  
 The XGBRegressor-model still seemed to be the be the best choice, even though it was closely followed by the GradientBoostingRegressor.  
 
 I chose the XGBRegressor and decided to do a grid search on it to tune its hyperparameters and therefore possibly improve the model performance, by finding the best combination of hyperparameters.  
